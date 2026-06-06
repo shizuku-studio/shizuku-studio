@@ -1,280 +1,1050 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>しずくStudio｜かんたん副業</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:'Noto Sans JP',sans-serif;
-  background:#FFF8F5;
-  color:#2D1B1B;
-  overflow-x:hidden;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>しずくStudio｜大人の副業・モデル募集</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:     #FFFFFF;
+      --bg-light:  #FAF8FF;
+      --bg-purple: #F0EBF8;
+      --purple:    #6B4FA0;
+      --purple-lt: #9B79D0;
+      --purple-dk: #4A2D7F;
+      --gold:      #C8A84B;
+      --gold-lt:   #E8C97A;
+      --text:      #1A1A2E;
+      --text-md:   #4A4A6A;
+      --text-lt:   #8A8AAA;
+      --border:    #E0D8F0;
+    }
 
-/* ===== PAGE 1 : ヒーロー ===== */
-.hero{
-  min-height:100svh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;
-  padding:40px 22px 40px;
-  background:linear-gradient(160deg,#FFE8E0 0%,#FFF5F0 45%,#EAF4FF 100%);
-  position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;
-  top:-80px;right:-80px;
-  width:320px;height:320px;
-  background:radial-gradient(circle,rgba(255,160,140,0.3),transparent 70%);
-  border-radius:50%;pointer-events:none;
-}
-.hero::after{
-  content:'';position:absolute;
-  bottom:-60px;left:-60px;
-  width:260px;height:260px;
-  background:radial-gradient(circle,rgba(160,200,255,0.3),transparent 70%);
-  border-radius:50%;pointer-events:none;
-}
-.hero-inner{position:relative;z-index:1;width:100%;max-width:480px;}
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-.tag-pill{
-  display:inline-flex;align-items:center;gap:5px;
-  background:#FFE0DA;color:#FF5A5A;
-  font-size:1rem;font-weight:700;
-  padding:6px 18px;border-radius:50px;
-  margin-bottom:20px;
-  animation:pop 0.5s ease 0.1s both;
-}
-@keyframes pop{from{opacity:0;transform:scale(0.85);}to{opacity:1;transform:scale(1);}}
-@keyframes up{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
 
-.hero-title{
-  font-size:clamp(2.1rem,7.5vw,3.4rem);
-  font-weight:900;line-height:1.3;
-  margin-bottom:14px;
-  animation:up 0.5s ease 0.2s both;
-}
-.pink{color:#FF5A5A;}
-.blue{color:#4A90E2;}
+    img { max-width: 100%; display: block; }
 
-.checks{
-  display:flex;flex-direction:column;gap:8px;
-  margin-bottom:24px;
-  animation:up 0.5s ease 0.4s both;
-}
-.check{
-  display:flex;align-items:center;gap:10px;
-  background:rgba(255,255,255,0.85);
-  border:1.5px solid #FFD0C8;
-  border-radius:12px;
-  padding:11px 16px;
-  font-size:1.05rem;font-weight:700;
-  text-align:left;
-}
-.ck{
-  width:28px;height:28px;border-radius:50%;
-  background:linear-gradient(135deg,#FF5A5A,#FF8C42);
-  color:#fff;font-size:0.9rem;font-weight:900;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
+    /* ─── UTILITY ─── */
+    .section {
+      padding: 72px 20px;
+    }
+    .inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 0.82rem;
+      letter-spacing: 0.2em;
+      color: var(--purple);
+      border: 1px solid var(--purple-lt);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.4rem, 5vw, 2rem);
+      font-weight: 700;
+      color: var(--purple-dk);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-md);
+      margin-bottom: 40px;
+    }
+    .gold-line {
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+      margin: 14px 0 32px;
+    }
+    .btn-line {
+      display: block;
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+      background: #06C755;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 18px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 20px rgba(6,199,85,0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-line:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(6,199,85,0.4);
+    }
+    .btn-line small {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-top: 3px;
+    }
 
-.income-pill{
-  background:linear-gradient(135deg,#FF5A5A,#FF8C42);
-  color:#fff;border-radius:14px;
-  padding:14px 20px;
-  margin-bottom:22px;
-  animation:up 0.5s ease 0.5s both;
-}
-.income-top{font-size:0.95rem;font-weight:700;opacity:0.85;margin-bottom:2px;}
-.income-num{font-size:clamp(1.8rem,6vw,2.6rem);font-weight:900;line-height:1.1;}
-.income-sub{font-size:0.92rem;font-weight:700;opacity:0.8;}
+    /* ─── HEADER ─── */
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+    }
+    .logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem;
+      color: var(--purple-dk);
+      letter-spacing: 0.15em;
+    }
+    .logo span { color: var(--gold); }
 
-.btn-line{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  background:#06C755;color:#fff;
-  padding:18px 36px;border-radius:16px;
-  font-size:1.05rem;font-weight:900;
-  text-decoration:none;
-  box-shadow:0 6px 24px rgba(6,199,85,0.4);
-  width:100%;
-  animation:up 0.5s ease 0.6s both;
-  transition:all 0.2s;
-}
-.btn-line:active{transform:scale(0.97);}
-.note{font-size:0.92rem;font-weight:700;color:#AAA;margin-top:10px;animation:up 0.5s ease 0.7s both;}
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(160deg, #FAF8FF 0%, #F0EBF8 60%, #E8DEFF 100%);
+      padding: 56px 20px 64px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--purple);
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(1.6rem, 6vw, 2.6rem);
+      font-weight: 700;
+      color: var(--purple-dk);
+      line-height: 1.45;
+      margin-bottom: 16px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .hero-sub {
+      font-size: 0.9rem;
+      color: var(--text-md);
+      margin-bottom: 36px;
+      line-height: 1.9;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: var(--text-md);
+      padding: 4px 12px;
+      margin-bottom: 36px;
+    }
 
-/* ===== PAGE 2 : まとめ ===== */
-.page2{
-  min-height:100svh;
-  display:flex;flex-direction:column;
-  justify-content:center;
-  padding:48px 22px;
-  background:#fff;
-}
-.page2-inner{max-width:480px;margin:0 auto;width:100%;}
+    /* ─── VIDEO COMPARE ─── */
+    .video-compare {
+      margin: 40px auto 0;
+      max-width: 680px;
+    }
+    .video-compare-label {
+      font-size: 0.75rem;
+      color: var(--text-lt);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .video-panels {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: center;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(107,79,160,0.15);
+    }
+    .video-panel {
+      position: relative;
+      aspect-ratio: 9/16;
+      background: #1A1A2E;
+      overflow: hidden;
+    }
+    .video-panel video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .video-panel-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .panel-before .video-panel-placeholder {
+      background: linear-gradient(135deg, #2A2040, #1A1030);
+    }
+    .panel-after .video-panel-placeholder {
+      background: linear-gradient(135deg, #1A0A40, #300060);
+    }
+    .placeholder-icon {
+      font-size: 2.4rem;
+      opacity: 0.6;
+    }
+    .placeholder-text {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .video-badge {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      padding: 5px 14px;
+      border-radius: 20px;
+    }
+    .panel-before .video-badge {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    .panel-after .video-badge {
+      background: var(--gold);
+      color: #1A1A2E;
+    }
+    .video-arrow {
+      width: 44px;
+      height: 44px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 12px rgba(107,79,160,0.25);
+      z-index: 2;
+      flex-shrink: 0;
+    }
+    .video-note {
+      font-size: 0.72rem;
+      color: var(--text-lt);
+      margin-top: 10px;
+      text-align: center;
+    }
 
-.sec-ttl{
-  font-size:clamp(1.4rem,4.5vw,1.9rem);
-  font-weight:900;text-align:center;
-  line-height:1.45;margin-bottom:24px;
-}
+    .hero-appeal {
+      display: inline-block;
+      background: rgba(107,79,160,0.12);
+      border: 1px solid rgba(107,79,160,0.3);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      color: var(--purple-dk);
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
 
-/* ステップ横並び */
-.steps-row{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:10px;margin-bottom:28px;
-}
-.step-card{
-  background:#FFF8F5;border:1.5px solid #FFD0C8;
-  border-radius:14px;padding:16px 14px;
-  text-align:center;
-}
-.step-icon{font-size:1.6rem;margin-bottom:6px;}
-.step-num{
-  font-size:0.82rem;font-weight:700;color:#FF5A5A;
-  letter-spacing:0.1em;margin-bottom:4px;
-}
-.step-title{font-size:0.95rem;font-weight:900;color:#2D1B1B;line-height:1.4;}
+    .feature-highlight {
+      margin-top: 14px;
+      background: var(--bg-purple);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: 0.92rem;
+      color: var(--purple-dk);
+      line-height: 1.8;
+    }
 
-/* FAQ 2問だけ */
-.faq-mini{
-  display:flex;flex-direction:column;gap:10px;
-  margin-bottom:28px;
-}
-.faq-card{
-  background:#FFF8F5;border:1.5px solid #FFD0C8;
-  border-radius:12px;padding:14px 16px;
-}
-.fq{
-  display:flex;align-items:flex-start;gap:8px;
-  font-size:1rem;font-weight:900;color:#2D1B1B;
-  margin-bottom:6px;
-}
-.qm{
-  width:26px;height:26px;border-radius:50%;
-  background:linear-gradient(135deg,#FF5A5A,#FF8C42);
-  color:#fff;font-size:0.85rem;font-weight:900;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;margin-top:1px;
-}
-.fa{font-size:0.95rem;font-weight:400;color:#888;line-height:1.7;padding-left:30px;}
+    /* ─── HERO VIDEO ─── */
+    .hero-video-wrap {
+      margin: 32px auto 0;
+      max-width: 360px;
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow:
+        0 16px 48px rgba(107,79,160,0.22),
+        0 4px 16px rgba(107,79,160,0.12);
+      background: #0A0A1A;
+      aspect-ratio: 9/16;
+    }
+    .hero-video-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .sound-btn {
+      display: block;
+      margin: 14px auto 0;
+      background: rgba(10,10,26,0.65);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-size: 0.82rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      white-space: nowrap;
+    }
+    .sound-btn.on {
+      background: rgba(200,168,75,0.9);
+      border-color: transparent;
+      color: #1A1A2E;
+    }
+    .video-loop-note {
+      font-size: 0.72rem;
+      color: var(--text-lt);
+      margin-top: 6px;
+      letter-spacing: 0.05em;
+    }
+    /* ── "AIで変わりたい" 呼びかけ表現 ── */
+    .change-tagline {
+      display: inline-block;
+      margin: 28px 0 4px;
+      font-size: 0.82rem;
+      font-weight: 300;
+      letter-spacing: 0.25em;
+      color: var(--purple-lt);
+    }
+    .change-tagline::before,
+    .change-tagline::after {
+      content: '—';
+      margin: 0 8px;
+      opacity: 0.5;
+    }
+    .cta-change-lead {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.2em;
+      margin-bottom: 10px;
+    }
 
-/* CTA */
-.cta-box{
-  background:linear-gradient(135deg,#7B3FD4 0%,#5B6FE8 50%,#38BAE8 100%);
-  border-radius:20px;padding:28px 22px;text-align:center;
-  box-shadow:0 8px 32px rgba(100,80,220,0.35);
-}
-.cta-ttl{font-size:clamp(1.2rem,4vw,1.6rem);font-weight:900;color:#fff;margin-bottom:8px;line-height:1.4;}
-.cta-sub{font-size:1rem;font-weight:700;color:rgba(255,255,255,0.92);margin-bottom:20px;}
-.btn-line-w{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  background:#fff;color:#06C755;
-  padding:17px 32px;border-radius:14px;
-  font-size:1rem;font-weight:900;
-  text-decoration:none;
-  box-shadow:0 4px 16px rgba(0,0,0,0.15);
-  width:100%;transition:all 0.2s;
-}
-.btn-line-w:active{transform:scale(0.97);}
-.cta-note{font-size:0.95rem;font-weight:700;color:rgba(255,255,255,0.82);margin-top:10px;}
+    /* ─── TARGET ─── */
+    .target-section {
+      background: var(--white);
+    }
+    .target-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .target-card {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--purple-lt);
+      border-radius: 12px;
+      padding: 24px 20px;
+    }
+    .target-card-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--purple);
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .target-list {
+      list-style: none;
+    }
+    .target-list li {
+      font-size: 0.97rem;
+      color: var(--text-md);
+      padding: 4px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+    .target-list li::before {
+      content: '💜';
+      position: absolute;
+      left: 0;
+      font-size: 0.75rem;
+      top: 6px;
+    }
 
-footer{background:#2D1B1B;padding:22px;text-align:center;}
-.fc{font-size:0.82rem;color:#555;}
-</style>
+    /* ─── FEATURES ─── */
+    .features-section {
+      background: var(--bg-purple);
+    }
+    .feature-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .feature-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 2px 16px rgba(107,79,160,0.08);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .feature-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      flex-shrink: 0;
+      width: 48px;
+    }
+    .feature-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--purple-dk);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .feature-content p {
+      font-size: 0.95rem;
+      color: var(--text-md);
+      line-height: 1.8;
+    }
+
+    /* ─── INCOME ─── */
+    .income-section {
+      background: var(--white);
+    }
+    .income-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 36px;
+    }
+    .income-card {
+      display: flex;
+      align-items: center;
+      background: var(--bg-light);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .income-phase {
+      background: var(--purple);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 20px 16px;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      white-space: nowrap;
+    }
+    .income-detail {
+      padding: 16px 20px;
+      flex: 1;
+    }
+    .income-detail h4 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--purple-dk);
+      margin-bottom: 4px;
+    }
+    .income-detail p {
+      font-size: 0.9rem;
+      color: var(--text-md);
+    }
+    .income-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--purple-lt), var(--gold));
+      margin-top: 10px;
+      border-radius: 2px;
+    }
+
+    /* スタジオからのメッセージ */
+    .studio-msg {
+      background: linear-gradient(135deg, #F0EBF8, #FAF8FF);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .studio-msg .drop {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .studio-msg p {
+      font-size: 0.9rem;
+      color: var(--text-md);
+      line-height: 1.9;
+      margin-bottom: 12px;
+    }
+    .studio-msg .sig {
+      font-size: 0.8rem;
+      color: var(--text-lt);
+      font-style: italic;
+    }
+
+    /* ─── FLOW ─── */
+    .flow-section {
+      background: var(--bg-purple);
+    }
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .flow-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      position: relative;
+      padding-bottom: 32px;
+    }
+    .flow-step:last-child { padding-bottom: 0; }
+    .flow-step::after {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 48px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--purple-lt), var(--border));
+    }
+    .flow-step:last-child::after { display: none; }
+    .step-num {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--purple);
+      color: #fff;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      z-index: 1;
+      box-shadow: 0 2px 12px rgba(107,79,160,0.3);
+    }
+    .step-content {
+      padding-top: 8px;
+    }
+    .step-content h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--purple-dk);
+      margin-bottom: 6px;
+    }
+    .step-content p {
+      font-size: 0.95rem;
+      color: var(--text-md);
+      line-height: 1.8;
+    }
+    .step-tag {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--purple);
+      padding: 2px 10px;
+      margin-top: 6px;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-section {
+      background: var(--white);
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    details {
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    summary {
+      padding: 18px 20px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--purple-dk);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: 'Q';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      background: var(--purple);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    summary::after {
+      content: '＋';
+      margin-left: auto;
+      font-size: 1.1rem;
+      color: var(--purple-lt);
+      transition: transform 0.2s;
+    }
+    details[open] summary::after {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 20px 18px 58px;
+      font-size: 0.95rem;
+      color: var(--text-md);
+      line-height: 1.9;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      background: linear-gradient(160deg, #4A2D7F 0%, #6B4FA0 60%, #9B79D0 100%);
+      text-align: center;
+      padding: 72px 20px;
+    }
+    .cta-section .section-title {
+      color: #fff;
+    }
+    .cta-section .section-sub {
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 36px;
+    }
+    .cta-note {
+      margin-top: 20px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .cta-note span {
+      display: inline-block;
+      margin: 0 10px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--purple-dk);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 24px 20px;
+      font-size: 0.82rem;
+    }
+    footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    /* ─── MOBILE ONLY ─── */
+    @media (max-width: 480px) {
+      .video-panels {
+        grid-template-columns: 1fr auto 1fr;
+      }
+      .video-arrow {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+      }
+      .video-panel { aspect-ratio: 3/4; }
+      .income-phase {
+        padding: 16px 10px;
+        font-size: 0.78rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<!-- ===== PAGE 1 ===== -->
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="logo">💧 しずく<span>Studio</span></div>
+</header>
+
+<!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="tag-pill">✨ モデル募集中</div>
+  <div class="inner">
+
+    <!-- ① 動画（アイキャッチ・最初に見せる） -->
+    <div class="hero-video-wrap">
+      <video id="hero-video"
+        src="hero-video.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+      ></video>
+    </div>
+    <button class="sound-btn" id="sound-btn" onclick="toggleSound()">
+      🔇 タップで音声ON
+    </button>
+    <p class="video-loop-note">※ 音声はボタンでON/OFFできます</p>
+
+    <!-- ② テキスト＋CTA（動画の後に説明） -->
+    <p class="change-tagline">AIで変わりたいあなたへ</p>
+    <span class="hero-eyebrow" style="margin-top:10px;">18才以上の女性限定</span>
 
     <h1 class="hero-title">
-      <span class="pink">顔出し なし</span>で<br>
-      <span class="blue">かんたんに</span><br>
-      かせげる副業！
+      素顔を守りながら、<br>
+      <em>大人の副業</em>を
     </h1>
 
-    <div class="checks">
-      <div class="check"><div class="ck">✓</div>AIで顔を別人に変えるから バレない</div>
-      <div class="check"><div class="ck">✓</div>さつえいだけでOK！あとは全部おまかせ</div>
-      <div class="check"><div class="ck">✓</div>みけいけん・副業・学生 大歓迎</div>
-    </div>
+    <p class="hero-sub">
+      AIで顔を別の顔に変換<br>
+      あなたの身元は、完全に守られます<br>
+      さつえいだけして、あとは全部おまかせ
+    </p>
 
-    <div class="income-pill">
-      <p class="income-top">💰 実際の収益事例（個人差あり）</p>
-      <p class="income-num">月10万〜100万円以上</p>
-      <p class="income-sub">スタートから稼ぎやすい仕組みです</p>
+    <div class="hero-appeal">
+      見た目に自信がない方でも、AIで好きな顔でデビューできます
     </div>
 
     <a href="https://lin.ee/oYMVMlb" class="btn-line">
-      💬 LINEで 無料 相談する
+      💬 LINEで無料相談する
+      <small>秘密厳守・24時間以内にご返信</small>
     </a>
-    <p class="note">相談無料 ／ 24時間以内に返信 ／ ひみつ厳守</p>
-  </div>
-</section>
-
-<!-- ===== PAGE 2 ===== -->
-<section class="page2">
-  <div class="page2-inner">
-
-    <h2 class="sec-ttl">
-      応募から<span style="color:#FF5A5A;">かんたん</span><br>
-      4ステップ！
-    </h2>
-
-    <div class="steps-row">
-      <div class="step-card">
-        <div class="step-icon">💬</div>
-        <p class="step-num">STEP 1</p>
-        <p class="step-title">LINEに「応募」と送る</p>
-      </div>
-      <div class="step-card">
-        <div class="step-icon">📱</div>
-        <p class="step-num">STEP 2</p>
-        <p class="step-title">オンライン面談（30分）</p>
-      </div>
-      <div class="step-card">
-        <div class="step-icon">📝</div>
-        <p class="step-num">STEP 3</p>
-        <p class="step-title">電子契約にサイン</p>
-      </div>
-      <div class="step-card">
-        <div class="step-icon">🎬</div>
-        <p class="step-num">STEP 4</p>
-        <p class="step-title">さつえいスタート！</p>
-      </div>
-    </div>
-
-    <div class="faq-mini">
-      <div class="faq-card">
-        <div class="fq"><div class="qm">Q</div>ほんとうに顔バレしない？</div>
-        <p class="fa">はい！AIで全く別の顔に変えるので、家族・友だち・仕事先には絶対バレません。</p>
-      </div>
-      <div class="faq-card">
-        <div class="fq"><div class="qm">Q</div>さつえい以外の作業はある？</div>
-        <p class="fa">ありません！へんしゅう・投こう・お金のかんりは全部しずくStudioがやります。</p>
-      </div>
-    </div>
-
-    <div class="cta-box">
-      <h3 class="cta-ttl">まずは「モデル」と<br>送ってみてね💧</h3>
-      <p class="cta-sub">相談無料 ／ 24時間以内に返信</p>
-      <a href="https://lin.ee/oYMVMlb" class="btn-line-w">
-        💬 LINEで 無料 相談する
-      </a>
-      <p class="cta-note">プロフィールのリンクからもアクセスできます</p>
-    </div>
 
   </div>
 </section>
 
-<footer><p class="fc">© 2026 Shizuku Studio. All rights reserved.</p></footer>
+<!-- ─── TARGET ─── -->
+<section class="section target-section">
+  <div class="inner">
+    <span class="section-tag">こんな方へ</span>
+    <h2 class="section-title">あなたに、当てはまりますか？</h2>
+    <div class="gold-line"></div>
+
+    <div class="target-cards">
+
+      <div class="target-card">
+        <div class="target-card-title">💼 大学生・社会人・返済がある方</div>
+        <ul class="target-list">
+          <li>毎月の返済や生活費のプレッシャーがある</li>
+          <li>体を使う仕事はしたくない</li>
+          <li>顔や身元を守りながら、しっかり稼ぎたい</li>
+        </ul>
+      </div>
+
+      <div class="target-card">
+        <div class="target-card-title">🌙 夜のお仕事をしている・していた方</div>
+        <ul class="target-list">
+          <li>男性と直接会わずに稼ぎたい</li>
+          <li>体と心への負担を、もっと減らしたい</li>
+          <li>今のお仕事の移行先や、掛け持ちとして考えたい</li>
+        </ul>
+      </div>
+
+      <div class="target-card">
+        <div class="target-card-title">🎬 コンテンツ制作の経験がある方</div>
+        <ul class="target-list">
+          <li>男性との共演なしで、安全に稼ぎたい</li>
+          <li>SNSだけでは収入に限界を感じている</li>
+          <li>体を傷つけるリスクなく、新しい形で活動したい</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section class="section features-section">
+  <div class="inner">
+    <span class="section-tag">しずくStudioの特ちょう</span>
+    <h2 class="section-title">3つのちがい</h2>
+    <div class="gold-line"></div>
+
+    <div class="feature-cards">
+
+      <div class="feature-card">
+        <div class="feature-num">01</div>
+        <div class="feature-content">
+          <h3>AIで顔を変換。完全とくめいで活動できます</h3>
+          <p>
+            さつえいした映像は、AIが顔を全く別の顔に変換してから公開します
+            知人・家族・会社の人に、絶対にバレません
+            プライバシーは完全に守られます
+          </p>
+          <div class="feature-highlight">
+            💜 見た目に自信がない方でも大丈夫<br>
+            AIで好きな顔・なりたい顔でデビューできます<br>
+            <span style="font-size:0.85em;color:var(--purple-lt);letter-spacing:0.08em;">
+              変わりたいと思う気持ちが、あなたの一番の資格です
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-num">02</div>
+        <div class="feature-content">
+          <h3>さつえいだけ来てください。あとは全部おまかせ</h3>
+          <p>
+            へんしゅう・投こう・コメント返信・売り上げ管理まで、
+            しずくStudioがすべて代行します
+            あなたはさつえいの時間だけ確保するだけでOK
+          </p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-num">03</div>
+        <div class="feature-content">
+          <h3>1回のさつえいで、AIが顔を変えて再販も可能</h3>
+          <p>
+            1回撮影した映像は、AIで顔を変えることで
+            ちがうコンテンツとして再び販売できます
+            あなたの時間を、何倍にも活かせる仕組みです
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── INCOME ─── -->
+<section class="section income-section">
+  <div class="inner">
+    <span class="section-tag">収益のしくみ</span>
+    <h2 class="section-title">動画は資産。積み上がり続けます</h2>
+    <div class="gold-line"></div>
+    <p class="section-sub">
+      夜のお仕事とちがい、動画は作れば作るほど「資産」になります<br>
+      1本作った動画は、あなたが寝ている間も売れ続けます
+    </p>
+
+    <div class="income-cards">
+      <div class="income-card">
+        <div class="income-phase">スタート期</div>
+        <div class="income-detail">
+          <h4>3万〜10万円 / 月</h4>
+          <p>さつえい1〜2回から始まります</p>
+
+          <div class="income-bar" style="width:30%"></div>
+        </div>
+      </div>
+      <div class="income-card">
+        <div class="income-phase">成長期</div>
+        <div class="income-detail">
+          <h4>10万〜30万円 / 月</h4>
+          <p>動画が積み上がるにつれて収益も増えます</p>
+          <div class="income-bar" style="width:60%"></div>
+        </div>
+      </div>
+      <div class="income-card">
+        <div class="income-phase">安定期</div>
+        <div class="income-detail">
+          <h4>30万円〜 / 月</h4>
+          <p>資産動画が収益を生み続けます</p>
+          <div class="income-bar" style="width:100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- スタジオからのメッセージ -->
+    <div class="studio-msg">
+      <div class="drop">💧</div>
+      <p>
+        AIで変わりたいと思ったとき、その気持ちに正直でいていい<br>
+        しずくStudioは、まだ始まったばかりのスタジオです<br>
+        だからこそ、最初に参加してくださる方を、大切にします<br>
+        あなたの安全と収益を、本気で守ります<br>
+        まずは、話だけでも聞いてください
+      </p>
+      <div class="sig">— Shizuku Studio 運営チーム</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FLOW ─── -->
+<section class="section flow-section">
+  <div class="inner">
+    <span class="section-tag">参加の流れ</span>
+    <h2 class="section-title">3ステップで始められます</h2>
+    <div class="gold-line"></div>
+
+    <div class="flow-steps">
+
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>LINEで無料相談</h3>
+          <p>
+            「相談したい」と送るだけでOKです<br>
+            どんな仕事か、どんな流れか、収益はどのくらいか<br>
+            気になることを何でも聞いてください
+          </p>
+          <span class="step-tag">🔒 秘密厳守 · 強制なし</span>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>オンライン面談・電子けいやく</h3>
+          <p>
+            ZoomやLINE通話で30分ほどお話しします<br>
+            内ように同意していただけたら、電子けいやくを結びます<br>
+            けいやく書の内ようも事前にご確認いただけます
+          </p>
+          <span class="step-tag">📱 オンラインで完けつ</span>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>さつえい開始</h3>
+          <p>
+            場所はホテルまたはご自宅など、ご相談のうえ決めます<br>
+            さつえいが終わったら、あとはしずくStudioが全部やります<br>
+            収益は毎月ご報告、指定口座にお振り込みします
+          </p>
+          <span class="step-tag">💰 翌々月20日 お支払い</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="section faq-section">
+  <div class="inner">
+    <span class="section-tag">よくある質問</span>
+    <h2 class="section-title">不安なことは全部、聞いてください。</h2>
+    <div class="gold-line"></div>
+
+    <div class="faq-list">
+
+      <details>
+        <summary>本当に顔がバレませんか？</summary>
+        <div class="faq-answer">
+          はい、完全にバレません。さつえいした映像は、公開前にAIが顔を全く別の顔に変換します。知人・家族・会社の人が見ても、あなただとはわかりません。プロフィールや名前も本名を使いません
+        </div>
+      </details>
+
+      <details>
+        <summary>未経験でも大丈夫ですか？</summary>
+        <div class="faq-answer">
+          大丈夫です。さつえいのやり方、流れ、注意点など、一から丁寧にお伝えします。経験がない方もたくさんいます。まずはLINEでご相談ください
+        </div>
+      </details>
+
+      <details>
+        <summary>どんなコンテンツを作りますか？</summary>
+        <div class="faq-answer">
+          大人向けの動画コンテンツです。くわしい内容はLINEでご説明します。内容・範囲・やりたくないことはすべて事前にお聞きし、けいやく書に明記します。強制は一切ありません
+        </div>
+      </details>
+
+      <details>
+        <summary>今の仕事や生活にバレませんか？</summary>
+        <div class="faq-answer">
+          バレません。登録メールアドレス・連らく先はすべて非公開です。さつえい場所もご相談の上で決めるため、職場や自宅の近くを避けることもできます。秘密厳守でサポートします
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="inner">
+    <p class="cta-change-lead">AIで変わりたいあなたへ</p>
+    <h2 class="section-title">まずは話だけ、聞いてみませんか？</h2>
+    <p class="section-sub">
+      強制は一切ありません。話を聞いて、合わないと感じたらそれでOK<br>
+      あなたの不安や疑問に、正直にお答えします
+    </p>
+    <a href="https://lin.ee/oYMVMlb" class="btn-line">
+      💬 LINEで無料相談する
+      <small>秘密厳守 · 24時間以内にご返信 · 強制なし</small>
+    </a>
+    <p class="cta-note">
+      <span>✅ 登録無料</span>
+      <span>✅ 話だけでもOK</span>
+      <span>✅ 18さい以上の女性</span>
+    </p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <p>© 2026 Shizuku Studio. All rights reserved.</p>
+  <p style="margin-top:8px;">
+    <a href="#">プライバシーポリシー</a>
+    <a href="#">特定商取引法に基づく表記</a>
+  </p>
+</footer>
+
+<script>
+// 音声ON/OFFトグル
+function toggleSound() {
+  const video = document.getElementById('hero-video');
+  const btn   = document.getElementById('sound-btn');
+  if (video.muted) {
+    video.muted = false;
+    // ミュート解除と同時に再生を確実に開始
+    video.play().catch(() => { video.muted = true; });
+    btn.textContent = '🔊 音声ON中';
+    btn.classList.add('on');
+  } else {
+    video.muted = true;
+    btn.textContent = '🔇 タップで音声ON';
+    btn.classList.remove('on');
+  }
+}
+
+// ページ離脱→戻った時に動画を再開（iOSのPause対策）
+document.addEventListener('visibilitychange', () => {
+  const video = document.getElementById('hero-video');
+  if (video && document.visibilityState === 'visible') {
+    video.play().catch(() => {});
+  }
+});
+</script>
 
 </body>
 </html>
