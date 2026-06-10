@@ -5,585 +5,612 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>顔出しなしAI映像モニター募集 | しずく AI Studio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --black:   #0A0A0F;
-      --deep:    #12121C;
-      --surface: #1C1C2E;
-      --gold:    #C8A84B;
-      --gold-lt: #E8C97A;
-      --white:   #F5F0E8;
-      --gray:    #A09898;
-      --safe:    #3A7D5A;
-      --safe-lt: #5DB882;
+      --white:     #FFFFFF;
+      --bg-light:  #FAF8FF;
+      --bg-purple: #F0EBF8;
+      --purple:    #6B4FA0;
+      --purple-lt: #9B79D0;
+      --purple-dk: #4A2D7F;
+      --gold:      #C8A84B;
+      --gold-lt:   #E8C97A;
+      --text:      #1A1A2E;
+      --text-md:   #4A4A6A;
+      --text-lt:   #8A8AAA;
+      --border:    #E0D8F0;
+      --green:     #06C755;
+      --safe:      #1A7A4A;
+      --safe-bg:   #EBF7F0;
+      --safe-bd:   #B2DECA;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: var(--black);
-      color: var(--white);
       font-family: 'Noto Sans JP', sans-serif;
+      background: var(--white);
+      color: var(--text);
       line-height: 1.8;
       overflow-x: hidden;
+      font-size: 16px;
     }
 
-    .serif { font-family: 'Noto Serif JP', serif; }
+    /* ─── UTILITY ─── */
+    .inner { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+    .section { padding: 56px 0; }
 
-    /* ─── SECTION WRAPPER ─── */
-    .section {
-      padding: 72px 24px;
-      max-width: 680px;
-      margin: 0 auto;
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--purple);
+      border: 1px solid var(--purple-lt);
+      border-radius: 20px;
+      padding: 4px 14px;
+      margin-bottom: 12px;
     }
     .section-title {
       font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.3rem, 4vw, 1.8rem);
-      font-weight: 400;
-      letter-spacing: 0.15em;
-      margin-bottom: 36px;
-      text-align: center;
+      font-size: clamp(1.25rem, 5vw, 1.7rem);
+      font-weight: 700;
+      color: var(--purple-dk);
+      margin-bottom: 8px;
+      line-height: 1.45;
     }
-    .section-title span {
-      display: block;
-      font-size: 0.6em;
-      letter-spacing: 0.4em;
-      color: var(--gold);
-      margin-bottom: 10px;
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--text-md);
+      line-height: 1.8;
+      margin-bottom: 28px;
     }
-    .divider {
-      width: 40px; height: 1px;
+    .gold-line {
+      width: 36px; height: 2px;
       background: var(--gold);
-      margin: 0 auto 40px;
+      margin: 12px 0 28px;
     }
 
-    /* ─── HEADER NAV ─── */
-    .topbar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+    /* ─── LINE BUTTON ─── */
+    .btn-line {
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      margin: 0 auto;
+      background: var(--green);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 18px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 20px rgba(6,199,85,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-line:active { transform: scale(0.97); }
+    .btn-line small {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 400;
+      opacity: 0.85;
+      margin-top: 3px;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: rgba(255,255,255,0.92);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
       z-index: 100;
-      background: rgba(10,10,15,0.85);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
-      border-bottom: 1px solid #1E1E2E;
-      padding: 14px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
     }
-    .topbar-logo {
+    .logo {
       font-family: 'Noto Serif JP', serif;
-      font-size: 0.95rem;
-      color: var(--gold-lt);
-      letter-spacing: 0.2em;
-      text-decoration: none;
+      font-size: 1rem;
+      color: var(--purple-dk);
+      letter-spacing: 0.15em;
     }
-    .topbar-logo span { color: var(--gold); }
-    .topbar-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #06C755;
-      color: #fff;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 10px 18px;
-      border-radius: 4px;
-      text-decoration: none;
-    }
+    .logo span { color: var(--gold); }
 
     /* ─── HERO ─── */
     .hero {
-      position: relative;
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      background: linear-gradient(160deg, #FAF8FF 0%, #F0EBF8 60%, #E8DEFF 100%);
+      padding: 48px 20px 56px;
       text-align: center;
-      padding: 100px 24px 60px;
-      background: radial-gradient(ellipse at 50% 40%, #1E1330 0%, var(--black) 70%);
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 20% 80%, rgba(58,125,90,0.12) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(200,168,75,0.07) 0%, transparent 50%);
-    }
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 580px;
-    }
-    .hero-badge {
-      display: inline-block;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 0.72rem;
-      letter-spacing: 0.25em;
-      padding: 6px 18px;
-      margin-bottom: 28px;
     }
     .hero-limit {
       display: inline-block;
-      background: linear-gradient(135deg, #8B2020, #C03030);
+      background: #C03030;
       color: #fff;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 700;
-      letter-spacing: 0.1em;
-      padding: 6px 20px;
-      border-radius: 2px;
-      margin-bottom: 24px;
+      letter-spacing: 0.12em;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--purple);
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 18px;
     }
     .hero-title {
       font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.6rem, 6vw, 2.6rem);
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      line-height: 1.5;
-      margin-bottom: 20px;
-      color: var(--white);
+      font-size: clamp(1.5rem, 7vw, 2.2rem);
+      font-weight: 700;
+      color: var(--purple-dk);
+      line-height: 1.45;
+      margin-bottom: 16px;
     }
     .hero-title em {
       font-style: normal;
-      color: var(--gold-lt);
+      color: var(--purple);
     }
-    .hero-sub {
-      font-size: clamp(0.88rem, 2.5vw, 1.05rem);
-      color: var(--gray);
-      line-height: 1.8;
-      margin-bottom: 48px;
+    .hero-desc {
+      font-size: 0.92rem;
+      color: var(--text-md);
+      line-height: 1.9;
+      margin-bottom: 12px;
     }
-    .btn-line-lg {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: #06C755;
-      color: #fff;
-      font-size: 1.05rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      padding: 20px 44px;
-      border-radius: 4px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-      box-shadow: 0 4px 20px rgba(6,199,85,0.25);
+    .hero-private {
+      display: inline-block;
+      background: rgba(107,79,160,0.1);
+      border: 1px solid rgba(107,79,160,0.25);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--purple-dk);
+      padding: 10px 18px;
+      margin-bottom: 32px;
+      font-weight: 500;
     }
-    .btn-line-lg:hover { opacity: 0.88; }
     .hero-note {
-      margin-top: 18px;
-      font-size: 0.75rem;
-      color: var(--gray);
+      margin-top: 14px;
+      font-size: 0.73rem;
+      color: var(--text-lt);
       letter-spacing: 0.04em;
     }
 
     /* ─── WHAT ─── */
-    .what-bg {
-      background: var(--deep);
-      border-top: 1px solid #2A2A3A;
-      border-bottom: 1px solid #2A2A3A;
-    }
-    .what-desc {
-      font-size: 0.95rem;
-      color: var(--gray);
-      line-height: 1.9;
-      text-align: center;
-      margin-bottom: 36px;
-    }
+    .what-section { background: var(--white); }
     .what-cards {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    @media (max-width: 480px) {
-      .what-cards { grid-template-columns: 1fr; }
+      gap: 12px;
     }
     .what-card {
-      background: var(--surface);
-      border: 1px solid #2A2A3A;
-      border-top: 2px solid var(--gold);
-      padding: 24px 20px;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 16px;
       text-align: center;
     }
-    .what-card-icon {
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
+    .what-card-icon { font-size: 1.8rem; margin-bottom: 8px; }
     .what-card-title {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.95rem;
-      color: var(--gold-lt);
-      margin-bottom: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--purple-dk);
+      margin-bottom: 6px;
+      line-height: 1.4;
     }
     .what-card-desc {
-      font-size: 0.8rem;
-      color: var(--gray);
-      line-height: 1.7;
+      font-size: 0.75rem;
+      color: var(--text-md);
+      line-height: 1.6;
     }
 
     /* ─── SAFETY ─── */
+    .safety-section { background: var(--bg-purple); }
     .safety-list {
       list-style: none;
-      display: grid;
-      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
     .safety-list li {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      background: var(--surface);
-      border: 1px solid #2A2A3A;
-      border-left: 3px solid var(--safe-lt);
-      padding: 16px 20px;
+      gap: 12px;
+      background: var(--white);
+      border: 1px solid var(--safe-bd);
+      border-left: 4px solid var(--safe);
+      border-radius: 0 12px 12px 0;
+      padding: 14px 16px;
       font-size: 0.88rem;
-      line-height: 1.6;
+      line-height: 1.65;
+      color: var(--text-md);
     }
-    .safety-list li .icon {
+    .safety-list li .ck {
       flex-shrink: 0;
-      color: var(--safe-lt);
-      font-size: 1.1rem;
+      width: 22px; height: 22px;
+      background: var(--safe);
+      color: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
       margin-top: 1px;
     }
     .safety-note {
       margin-top: 20px;
-      font-size: 0.78rem;
-      color: var(--gray);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      font-size: 0.82rem;
+      color: var(--text-md);
       text-align: center;
       line-height: 1.8;
     }
 
     /* ─── FLOW ─── */
-    .flow-bg {
-      background: var(--deep);
-      border-top: 1px solid #2A2A3A;
-      border-bottom: 1px solid #2A2A3A;
+    .flow-section { background: var(--white); }
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
     }
-    .flow-steps { display: grid; gap: 0; }
     .flow-step {
       display: flex;
-      gap: 20px;
-      padding: 24px 0;
-      border-bottom: 1px solid #1E1E2E;
+      gap: 18px;
       align-items: flex-start;
+      position: relative;
+      padding-bottom: 28px;
     }
-    .flow-step:last-child { border-bottom: none; }
+    .flow-step:last-child { padding-bottom: 0; }
+    .flow-step::after {
+      content: '';
+      position: absolute;
+      left: 21px;
+      top: 44px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--purple-lt), var(--border));
+    }
+    .flow-step:last-child::after { display: none; }
     .step-num {
-      flex-shrink: 0;
-      width: 48px; height: 48px;
-      border: 1px solid var(--gold);
+      width: 44px; height: 44px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Noto Serif JP', serif;
-      color: var(--gold);
-      font-size: 1.1rem;
-    }
-    .step-content { flex: 1; }
-    .step-title {
+      background: var(--purple);
+      color: #fff;
       font-family: 'Noto Serif JP', serif;
       font-size: 1rem;
-      color: var(--gold-lt);
-      margin-bottom: 6px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      z-index: 1;
+      box-shadow: 0 2px 10px rgba(107,79,160,0.3);
     }
-    .step-desc {
-      font-size: 0.83rem;
-      color: var(--gray);
-      line-height: 1.7;
+    .step-body { padding-top: 8px; }
+    .step-body h3 {
+      font-size: 0.97rem;
+      font-weight: 700;
+      color: var(--purple-dk);
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+    .step-body p {
+      font-size: 0.85rem;
+      color: var(--text-md);
+      line-height: 1.75;
     }
     .step-tag {
       display: inline-block;
-      background: rgba(58,125,90,0.2);
-      border: 1px solid var(--safe);
-      color: var(--safe-lt);
-      font-size: 0.68rem;
+      background: var(--bg-light);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: var(--purple);
       padding: 2px 10px;
-      border-radius: 2px;
       margin-top: 6px;
-      letter-spacing: 0.05em;
     }
 
     /* ─── FAQ ─── */
-    .faq-list { display: grid; gap: 14px; }
-    .faq-item {
-      background: var(--surface);
-      border: 1px solid #2A2A3A;
-      padding: 22px 24px;
-    }
-    .faq-q {
-      font-family: 'Noto Serif JP', serif;
-      font-size: 0.93rem;
-      color: var(--gold-lt);
-      margin-bottom: 10px;
+    .faq-section { background: var(--bg-purple); }
+    .faq-list {
       display: flex;
+      flex-direction: column;
       gap: 10px;
     }
-    .faq-q::before {
-      content: 'Q.';
-      color: var(--gold);
+    details {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    summary {
+      padding: 16px 18px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--purple-dk);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      -webkit-tap-highlight-color: transparent;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::before {
+      content: 'Q';
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px; height: 24px;
+      background: var(--purple);
+      color: #fff;
+      border-radius: 6px;
+      font-size: 0.72rem;
       font-weight: 700;
       flex-shrink: 0;
     }
-    .faq-a {
-      font-size: 0.83rem;
-      color: var(--gray);
-      line-height: 1.8;
-      padding-left: 24px;
+    summary::after {
+      content: '＋';
+      margin-left: auto;
+      font-size: 1.1rem;
+      color: var(--purple-lt);
+      transition: transform 0.2s;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 14px 18px 16px 52px;
+      font-size: 0.88rem;
+      color: var(--text-md);
+      line-height: 1.85;
+      border-top: 1px solid var(--border);
     }
 
     /* ─── CTA ─── */
-    .cta {
-      background: radial-gradient(ellipse at 50% 50%, #1E1330 0%, var(--black) 70%);
+    .cta-section {
+      background: linear-gradient(160deg, #4A2D7F 0%, #6B4FA0 60%, #9B79D0 100%);
       text-align: center;
-      padding: 80px 24px;
+      padding: 64px 20px;
     }
-    .cta-copy {
-      font-family: 'Noto Serif JP', serif;
-      font-size: clamp(1.2rem, 4vw, 1.7rem);
-      font-weight: 300;
-      color: var(--gold-lt);
-      margin-bottom: 12px;
-      line-height: 1.6;
-    }
-    .cta-sub {
-      font-size: 0.85rem;
-      color: var(--gray);
+    .cta-section .section-title { color: #fff; }
+    .cta-section .section-sub {
+      color: rgba(255,255,255,0.8);
       margin-bottom: 12px;
     }
-    .cta-limit {
+    .cta-limit-badge {
       display: inline-block;
-      background: rgba(139,32,32,0.3);
-      border: 1px solid #C03030;
-      color: #E07070;
-      font-size: 0.8rem;
+      background: rgba(192,48,48,0.8);
+      border: 1px solid rgba(255,120,120,0.5);
+      color: #fff;
+      font-size: 0.78rem;
       letter-spacing: 0.1em;
-      padding: 6px 20px;
-      margin-bottom: 36px;
+      padding: 5px 18px;
+      border-radius: 20px;
+      margin-bottom: 28px;
     }
     .cta-note {
-      margin-top: 14px;
-      font-size: 0.73rem;
-      color: #5A5A6A;
+      margin-top: 18px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
       line-height: 1.8;
     }
 
     /* ─── FOOTER ─── */
     footer {
+      background: var(--purple-dk);
+      color: rgba(255,255,255,0.4);
       text-align: center;
-      padding: 28px 20px;
-      font-size: 0.75rem;
-      color: #3A3A4A;
-      border-top: 1px solid #1E1E2E;
+      padding: 24px 20px;
+      font-size: 0.78rem;
     }
     footer a {
-      color: #5A5A6A;
+      color: rgba(255,255,255,0.4);
       text-decoration: none;
-    }
-
-    /* ─── FADE IN ─── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+      margin: 0 6px;
     }
 
     /* ─── STICKY LINE BTN ─── */
     .sticky-line {
       position: fixed;
-      bottom: 20px;
+      bottom: 16px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 200;
       display: flex;
       align-items: center;
-      gap: 10px;
-      background: #06C755;
+      gap: 8px;
+      background: var(--green);
       color: #fff;
       font-size: 0.92rem;
       font-weight: 700;
-      padding: 16px 36px;
+      padding: 15px 32px;
       border-radius: 40px;
       text-decoration: none;
-      box-shadow: 0 4px 24px rgba(6,199,85,0.4);
+      box-shadow: 0 4px 20px rgba(6,199,85,0.45);
       white-space: nowrap;
-      transition: opacity 0.2s;
+      transition: opacity 0.3s, transform 0.3s;
+      -webkit-tap-highlight-color: transparent;
     }
-    .sticky-line:hover { opacity: 0.9; }
-    .sticky-line.hidden { opacity: 0; pointer-events: none; }
+    .sticky-line.hidden {
+      opacity: 0;
+      transform: translateX(-50%) translateY(12px);
+      pointer-events: none;
+    }
+
+    /* ─── FADE IN ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- ─── TOPBAR ─── -->
-<nav class="topbar">
-  <a href="index.html" class="topbar-logo serif">💧 しずく <span>AI Studio</span></a>
-  <a href="https://line.me/R/ti/p/@366mqinx" class="topbar-cta">
-    <svg width="16" height="16" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="6" fill="none"/><path d="M20 5C11.716 5 5 10.82 5 18.1c0 6.552 5.82 12.04 13.72 13.1l1.28.16v3.64l3.56-3.56c5.4-1.72 9.44-6.06 9.44-13.34C33 10.82 28.284 5 20 5z" fill="#fff"/></svg>
-    LINE無料相談
-  </a>
-</nav>
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="logo">💧 しずく <span>AI Studio</span></div>
+</header>
 
 <!-- ─── HERO ─── -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">SHIZUKU AI STUDIO</div>
-    <div class="hero-limit">🔴 限定5名 無料モニター募集中</div>
+  <div class="inner">
+    <div class="hero-limit">🔴 限定5名 無料モニター募集中</div><br>
+    <span class="hero-eyebrow">20歳以上の女性限定</span>
 
-    <h1 class="hero-title serif">
+    <h1 class="hero-title">
       顔出しなし、<br>
-      <em>AI映像モニター募集。</em>
+      <em>AI映像モニター</em><br>
+      無料で体験しませんか？
     </h1>
 
-    <p class="hero-sub">
-      あなたの短い動画を<br>
-      AIで顔と声を変換した<strong style="color:var(--white);">非公開サンプル映像</strong>にします。<br>
-      許可なくSNS・広告・販売には使用しません。
+    <p class="hero-desc">
+      あなたのスマホ動画を<br>
+      AIで<strong>顔と声を変換</strong>した<br>
+      <strong>非公開サンプル映像</strong>にします。
     </p>
 
-    <a href="https://line.me/R/ti/p/@366mqinx" class="btn-line-lg">
-      <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#fff"/><path d="M20 6C12.268 6 6 11.6 6 18.6c0 6.3 5.6 11.6 13.2 12.6l1.6.2v3.6l3.2-3.2c5.8-1.4 10-5.8 10-13.2C34 11.6 27.732 6 20 6z" fill="#06C755"/></svg>
-      公式LINEで無料応募する
+    <div class="hero-private">
+      🔒 許可なくSNS・広告・販売には使用しません
+    </div>
+
+    <a href="https://line.me/R/ti/p/@366mqinx" class="btn-line">
+      💬 LINEで無料応募する
+      <small>秘密厳守 · 24時間以内にご返信</small>
     </a>
-    <p class="hero-note">対象：20歳以上の女性 ／ 完全秘密厳守 ／ 返信24時間以内</p>
+    <p class="hero-note">対象：20歳以上の女性 ／ 本人確認あり</p>
   </div>
 </section>
 
 <!-- ─── WHAT ─── -->
-<section class="what-bg">
-  <div class="section fade-in">
-    <h2 class="section-title">
-      <span>WHAT IS THIS</span>
-      これはどんな企画？
-    </h2>
-    <div class="divider"></div>
-    <p class="what-desc">
+<section class="section what-section fade-in">
+  <div class="inner">
+    <span class="section-tag">WHAT IS THIS</span>
+    <h2 class="section-title">これはどんな企画？</h2>
+    <div class="gold-line"></div>
+    <p class="section-sub">
       しずく AI Studioが提供するAI映像変換技術を<br>
       実際に体験していただくモニター企画です。<br>
-      あなたのスマホ動画を素材に、<strong style="color:var(--white);">顔も声も別人に変換</strong>した<br>
-      非公開サンプル映像を無料で制作します。
+      顔も声も変換した<strong>非公開サンプル映像</strong>を<br>
+      無料で制作します。
     </p>
     <div class="what-cards">
       <div class="what-card">
         <div class="what-card-icon">🎭</div>
-        <div class="what-card-title">顔・声をAI変換</div>
-        <p class="what-card-desc">最新のフェイス変換AIで、あなたの顔と声を完全に別の人物に変換します。</p>
+        <div class="what-card-title">顔・声を<br>AI変換</div>
+        <p class="what-card-desc">別の人物として変換。素顔は一切残りません。</p>
       </div>
       <div class="what-card">
         <div class="what-card-icon">🔒</div>
-        <div class="what-card-title">完全非公開サンプル</div>
-        <p class="what-card-desc">完成映像はご本人確認用のプライベートサンプルです。公開・使用は一切しません。</p>
+        <div class="what-card-title">完全<br>非公開</div>
+        <p class="what-card-desc">完成映像はご本人確認用のみ。公開しません。</p>
       </div>
       <div class="what-card">
         <div class="what-card-icon">📱</div>
-        <div class="what-card-title">スマホ1本でOK</div>
-        <p class="what-card-desc">撮影はスマホで短い動画を送るだけ。特別な機材は不要です。</p>
+        <div class="what-card-title">スマホだけで<br>OK</div>
+        <p class="what-card-desc">短い動画を送るだけ。機材は不要です。</p>
       </div>
       <div class="what-card">
         <div class="what-card-icon">🆓</div>
-        <div class="what-card-title">今回は完全無料</div>
-        <p class="what-card-desc">限定5名のモニター企画のため、制作費は無料です。</p>
+        <div class="what-card-title">今回は<br>完全無料</div>
+        <p class="what-card-desc">限定5名のモニター企画のため無料です。</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ─── SAFETY ─── -->
-<section>
-  <div class="section fade-in">
-    <h2 class="section-title">
-      <span>SAFETY PROMISE</span>
-      安心・安全への約束
-    </h2>
-    <div class="divider"></div>
+<section class="section safety-section fade-in">
+  <div class="inner">
+    <span class="section-tag">SAFETY PROMISE</span>
+    <h2 class="section-title">安心・安全への約束</h2>
+    <div class="gold-line"></div>
     <ul class="safety-list">
       <li>
-        <span class="icon">✓</span>
-        <span>完成映像は<strong style="color:var(--white);">ご本人確認用の非公開サンプル</strong>です。SNS・広告・販売目的での使用は一切行いません。</span>
+        <span class="ck">✓</span>
+        <span>完成映像は<strong>ご本人確認用の非公開サンプル</strong>です。SNS・広告・販売目的での使用は一切しません。</span>
       </li>
       <li>
-        <span class="icon">✓</span>
-        <span><strong style="color:var(--white);">許可なく公開しません。</strong>公開・共有を希望される場合のみ、改めてご本人から書面で確認します。</span>
+        <span class="ck">✓</span>
+        <span><strong>許可なく公開しません。</strong>公開を希望する場合のみ、改めて書面で確認します。</span>
       </li>
       <li>
-        <span class="icon">✓</span>
-        <span>対象は<strong style="color:var(--white);">20歳以上</strong>の女性です。本人確認（身分証）を実施します。</span>
+        <span class="ck">✓</span>
+        <span>対象は<strong>20歳以上の女性</strong>です。本人確認（身分証）を行います。</span>
       </li>
       <li>
-        <span class="icon">✓</span>
-        <span>制作前に<strong style="color:var(--white);">10分ほどのLINEビデオ通話</strong>で安全説明を行います。不安なことは何でも聞いてください。</span>
+        <span class="ck">✓</span>
+        <span>制作前に<strong>10分ほどのLINEビデオ通話</strong>で安全説明をします。不安なことは何でも聞けます。</span>
       </li>
       <li>
-        <span class="icon">✓</span>
-        <span>実在の人物や有名人に似せた映像は制作しません。<strong style="color:var(--white);">AIが生成したオリジナル顔</strong>を使用します。</span>
+        <span class="ck">✓</span>
+        <span>実在の人物や有名人に似せた映像は作りません。<strong>AIが生成したオリジナル顔</strong>を使用します。</span>
       </li>
       <li>
-        <span class="icon">✓</span>
-        <span>いつでも辞退・データ削除を申請できます。強制や継続の勧誘は一切しません。</span>
+        <span class="ck">✓</span>
+        <span>いつでも辞退・データ削除を申請できます。強制や勧誘は一切しません。</span>
       </li>
     </ul>
-    <p class="safety-note">
-      有償のお仕事案件についての説明は、<br>
-      ご希望の方のみに別途ご案内します。
-    </p>
+    <div class="safety-note">
+      有償のお仕事案件は、<strong>ご希望の方のみ</strong>に別途ご案内します。<br>
+      無理な勧誘は一切しません。
+    </div>
   </div>
 </section>
 
 <!-- ─── FLOW ─── -->
-<section class="flow-bg fade-in">
-  <div class="section">
-    <h2 class="section-title">
-      <span>HOW IT WORKS</span>
-      参加の流れ
-    </h2>
-    <div class="divider"></div>
+<section class="section flow-section fade-in">
+  <div class="inner">
+    <span class="section-tag">HOW IT WORKS</span>
+    <h2 class="section-title">参加の流れ</h2>
+    <div class="gold-line"></div>
     <div class="flow-steps">
 
       <div class="flow-step">
         <div class="step-num">1</div>
-        <div class="step-content">
-          <div class="step-title">LINEで無料応募</div>
-          <p class="step-desc">公式LINEへ「モニター応募」とメッセージを送るだけ。24時間以内にご返信します。</p>
-          <span class="step-tag">秘密厳守</span>
+        <div class="step-body">
+          <h3>LINEで「モニター応募」と送る</h3>
+          <p>ひとこと送るだけでOKです。24時間以内にご返信します。</p>
+          <span class="step-tag">🔒 秘密厳守</span>
         </div>
       </div>
 
       <div class="flow-step">
         <div class="step-num">2</div>
-        <div class="step-content">
-          <div class="step-title">簡単なアンケート回答</div>
-          <p class="step-desc">年齢確認と希望内容をLINEでお伺いします。所要2〜3分です。</p>
+        <div class="step-body">
+          <h3>簡単なアンケートに答える</h3>
+          <p>年齢確認と希望内容をLINEでお伺いします。2〜3分で完了します。</p>
         </div>
       </div>
 
       <div class="flow-step">
         <div class="step-num">3</div>
-        <div class="step-content">
-          <div class="step-title">LINEビデオ通話で安全説明（約10分）</div>
-          <p class="step-desc">AI変換の仕組み・データ管理・公開ポリシーを丁寧に説明します。疑問点はこの場で解消できます。本人確認（身分証確認）もこちらで行います。</p>
-          <span class="step-tag">安全説明 必須</span>
+        <div class="step-body">
+          <h3>LINEビデオ通話で安全説明（約10分）</h3>
+          <p>AI変換の仕組み・データ管理・公開ポリシーを説明します。本人確認もこの場で行います。</p>
+          <span class="step-tag">📹 安全説明 必須</span>
         </div>
       </div>
 
       <div class="flow-step">
         <div class="step-num">4</div>
-        <div class="step-content">
-          <div class="step-title">短い動画を送るだけ</div>
-          <p class="step-desc">撮影指示に沿って15〜30秒のスマホ動画を送付。編集・AI変換はすべてこちらが担当します。</p>
+        <div class="step-body">
+          <h3>短い動画をスマホで送るだけ</h3>
+          <p>15〜30秒の動画を送付。編集・AI変換はすべてこちらが担当します。</p>
         </div>
       </div>
 
       <div class="flow-step">
         <div class="step-num">5</div>
-        <div class="step-content">
-          <div class="step-title">非公開サンプル映像をお届け</div>
-          <p class="step-desc">完成した映像をLINEでご確認いただきます。ご満足いただけない場合はデータを削除します。</p>
-          <span class="step-tag">非公開・ご本人のみ</span>
+        <div class="step-body">
+          <h3>非公開サンプル映像をお届け</h3>
+          <p>完成映像をLINEでご確認いただきます。ご要望があればデータを削除します。</p>
+          <span class="step-tag">🎬 ご本人のみ・非公開</span>
         </div>
       </div>
 
@@ -592,99 +619,97 @@
 </section>
 
 <!-- ─── FAQ ─── -->
-<section style="background:var(--deep);border-top:1px solid #2A2A3A;border-bottom:1px solid #2A2A3A;">
-  <div class="section fade-in">
-    <h2 class="section-title">
-      <span>FAQ</span>
-      よくある質問
-    </h2>
-    <div class="divider"></div>
+<section class="section faq-section fade-in">
+  <div class="inner">
+    <span class="section-tag">FAQ</span>
+    <h2 class="section-title">不安なことは全部、聞いてください。</h2>
+    <div class="gold-line"></div>
     <div class="faq-list">
 
-      <div class="faq-item">
-        <p class="faq-q">本当に顔がバレませんか？</p>
-        <p class="faq-a">はい。AI変換技術により、あなたの素顔は映像に一切残りません。また完成サンプルは非公開管理のため、第三者が見ることはありません。</p>
-      </div>
+      <details>
+        <summary>本当に顔がバレませんか？</summary>
+        <div class="faq-answer">はい。AI変換技術により、あなたの素顔は映像に一切残りません。また完成サンプルは非公開管理のため、第三者が見ることはありません。</div>
+      </details>
 
-      <div class="faq-item">
-        <p class="faq-q">完成映像はどこかに公開されますか？</p>
-        <p class="faq-a">無料モニター映像はご本人確認用の非公開サンプルです。SNS・広告・販売など一切の用途で使用しません。許可なく公開することはありません。</p>
-      </div>
+      <details>
+        <summary>完成映像はどこかに公開されますか？</summary>
+        <div class="faq-answer">無料モニター映像はご本人確認用の非公開サンプルです。SNS・広告・販売など一切の用途で使用しません。許可なく公開することはありません。</div>
+      </details>
 
-      <div class="faq-item">
-        <p class="faq-q">副業やお仕事の話ですか？</p>
-        <p class="faq-a">今回の無料モニターはAI映像技術の体験企画です。有償のお仕事については、モニター後にご希望の方のみ別途ご案内します。強制・勧誘は一切しません。</p>
-      </div>
+      <details>
+        <summary>副業やお仕事の話ですか？</summary>
+        <div class="faq-answer">今回の無料モニターはAI映像技術の体験企画です。有償のお仕事については、モニター後にご希望の方のみ別途ご案内します。強制・勧誘は一切しません。</div>
+      </details>
 
-      <div class="faq-item">
-        <p class="faq-q">撮影経験がなくても大丈夫ですか？</p>
-        <p class="faq-a">はい、まったく問題ありません。撮影はスマホで指示通りに動画を録るだけです。特別なスキルや機材は不要です。</p>
-      </div>
+      <details>
+        <summary>撮影経験がなくても大丈夫ですか？</summary>
+        <div class="faq-answer">はい、まったく問題ありません。スマホで指示通りに動画を録るだけです。特別なスキルや機材は一切不要です。</div>
+      </details>
 
-      <div class="faq-item">
-        <p class="faq-q">途中でやめることはできますか？</p>
-        <p class="faq-a">いつでも辞退できます。お断りの理由は不要です。ご要望があれば送っていただいた素材・完成データはすべて削除します。</p>
-      </div>
+      <details>
+        <summary>途中でやめることはできますか？</summary>
+        <div class="faq-answer">いつでも辞退できます。理由は不要です。ご要望があれば送付いただいた素材・完成データはすべて削除します。</div>
+      </details>
 
-      <div class="faq-item">
-        <p class="faq-q">なぜ無料なのですか？</p>
-        <p class="faq-a">AI映像変換サービスの精度向上と実績づくりを目的としたモニター企画です。あなたのご協力が技術向上に繋がります。</p>
-      </div>
+      <details>
+        <summary>なぜ無料なのですか？</summary>
+        <div class="faq-answer">AI映像変換サービスの精度向上と実績づくりを目的としたモニター企画だからです。あなたのご協力が技術向上に繋がります。</div>
+      </details>
 
     </div>
   </div>
 </section>
 
 <!-- ─── CTA ─── -->
-<section class="cta fade-in" id="apply">
-  <p class="cta-copy serif">
-    AI映像、一度体験してみませんか。<br>
-    <span style="font-size:0.75em;color:var(--gray);">素顔は守られます。秘密厳守。</span>
-  </p>
-  <p class="cta-sub">まずはLINEで「モニター応募」とひとこと送るだけ。</p>
-  <div class="cta-limit">🔴 残り5名 ／ 無料モニター</div>
-  <br>
-  <a href="https://line.me/R/ti/p/@366mqinx" class="btn-line-lg">
-    <svg width="22" height="22" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="8" fill="#fff"/><path d="M20 6C12.268 6 6 11.6 6 18.6c0 6.3 5.6 11.6 13.2 12.6l1.6.2v3.6l3.2-3.2c5.8-1.4 10-5.8 10-13.2C34 11.6 27.732 6 20 6z" fill="#06C755"/></svg>
-    公式LINEで無料応募する
-  </a>
-  <p class="cta-note">
-    対象：20歳以上の女性 ／ 本人確認あり ／ 秘密厳守<br>
-    制作前にLINEビデオ通話で安全説明を行います。
-  </p>
+<section class="cta-section fade-in" id="apply">
+  <div class="inner">
+    <h2 class="section-title">AI映像、一度<br>体験してみませんか。</h2>
+    <p class="section-sub">
+      LINEで「モニター応募」とひとこと送るだけ。<br>
+      素顔は守られます。秘密厳守。
+    </p>
+    <div class="cta-limit-badge">🔴 残り5名 ／ 無料モニター</div>
+    <br>
+    <a href="https://line.me/R/ti/p/@366mqinx" class="btn-line">
+      💬 LINEで無料応募する
+      <small>秘密厳守 · 24時間以内にご返信 · 強制なし</small>
+    </a>
+    <p class="cta-note">
+      対象：20歳以上の女性 ／ 本人確認あり<br>
+      制作前にLINEビデオ通話で安全説明を行います
+    </p>
+  </div>
 </section>
 
 <!-- ─── FOOTER ─── -->
 <footer>
-  <p style="margin-bottom:6px;">© 2026 Shizuku AI Studio. All rights reserved.</p>
-  <p><a href="index.html">しずく AI Studio トップへ</a></p>
+  <p>© 2026 Shizuku AI Studio. All rights reserved.</p>
+  <p style="margin-top:8px;">
+    <a href="index.html">トップへ戻る</a>
+  </p>
 </footer>
 
 <!-- ─── STICKY LINE BTN ─── -->
-<a href="https://line.me/R/ti/p/@366mqinx" class="sticky-line" id="sticky-line">
-  <svg width="18" height="18" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="6" fill="none"/><path d="M20 5C11.716 5 5 10.82 5 18.1c0 6.552 5.82 12.04 13.72 13.1l1.28.16v3.64l3.56-3.56c5.4-1.72 9.44-6.06 9.44-13.34C33 10.82 28.284 5 20 5z" fill="#fff"/></svg>
+<a href="https://line.me/R/ti/p/@366mqinx" class="sticky-line hidden" id="sticky-line">
+  <svg width="18" height="18" viewBox="0 0 40 40" fill="none"><path d="M20 5C11.716 5 5 10.82 5 18.1c0 6.552 5.82 12.04 13.72 13.1l1.28.16v3.64l3.56-3.56c5.4-1.72 9.44-6.06 9.44-13.34C33 10.82 28.284 5 20 5z" fill="#fff"/></svg>
   無料応募はこちら
 </a>
 
 <script>
-  // ─── FADE IN on scroll ───
-  const observer = new IntersectionObserver(entries => {
+  // フェードイン
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-  // ─── STICKY BTN: hide near hero, show after ───
-  const stickyBtn = document.getElementById('sticky-line');
-  const heroEl = document.querySelector('.hero');
-  const ioSticky = new IntersectionObserver(entries => {
-    stickyBtn.classList.toggle('hidden', entries[0].isIntersecting);
   }, { threshold: 0.1 });
-  ioSticky.observe(heroEl);
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  // スティッキーボタン：HEROを過ぎたら表示
+  const sticky = document.getElementById('sticky-line');
+  const hero   = document.querySelector('.hero');
+  new IntersectionObserver(entries => {
+    sticky.classList.toggle('hidden', entries[0].isIntersecting);
+  }, { threshold: 0.05 }).observe(hero);
 </script>
 
 </body>
