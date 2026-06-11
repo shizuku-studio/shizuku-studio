@@ -441,6 +441,29 @@
       pointer-events: none;
     }
 
+    /* ─── SOUND BTN ─── */
+    .sound-btn {
+      display: block;
+      margin: 12px auto 0;
+      background: rgba(30,20,50,0.6);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 30px;
+      padding: 10px 22px;
+      font-size: 0.82rem;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background 0.25s, border-color 0.25s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sound-btn.on {
+      background: rgba(200,168,75,0.9);
+      border-color: transparent;
+      color: #1A1A2E;
+    }
+
     /* ─── FADE IN ─── */
     .fade-in {
       opacity: 0;
@@ -456,6 +479,28 @@
 <header>
   <div class="logo">💧 しずく <span>AI Studio</span></div>
 </header>
+
+<!-- ─── BEFORE/AFTER VIDEO（最上段） ─── -->
+<section style="background:linear-gradient(160deg,#FAF8FF 0%,#F0EBF8 100%);padding:32px 0 28px;text-align:center;">
+  <div class="inner">
+    <p style="font-size:0.72rem;letter-spacing:0.2em;color:#9B79D0;margin-bottom:14px;">AI FACE CONVERSION DEMO</p>
+    <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(107,79,160,0.18);max-width:420px;margin:0 auto;">
+      <video
+        id="ba-video"
+        src="ba-crop.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        webkit-playsinline
+        preload="auto"
+        style="width:100%;display:block;"
+      ></video>
+    </div>
+    <button class="sound-btn" id="sound-btn" onclick="toggleSound()">🔇 タップで音声ON</button>
+    <p style="font-size:0.72rem;color:#8A8AAA;margin-top:8px;">※ 実際のAI変換デモ映像です</p>
+  </div>
+</section>
 
 <!-- ─── HERO ─── -->
 <section class="hero">
@@ -484,26 +529,6 @@
       <small>秘密厳守 · 24時間以内にご返信</small>
     </a>
     <p class="hero-note">対象：20歳以上の女性 ／ 本人確認あり</p>
-  </div>
-</section>
-
-<!-- ─── BEFORE/AFTER VIDEO ─── -->
-<section style="background:#F5F0FF;padding:32px 0 36px;text-align:center;">
-  <div class="inner">
-    <p style="font-size:0.72rem;letter-spacing:0.2em;color:#9B79D0;margin-bottom:14px;">AI FACE CONVERSION DEMO</p>
-    <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(107,79,160,0.18);max-width:440px;margin:0 auto;">
-      <video
-        src="ba-crop.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
-        webkit-playsinline
-        preload="auto"
-        style="width:100%;display:block;"
-      ></video>
-    </div>
-    <p style="font-size:0.75rem;color:#8A8AAA;margin-top:10px;">※ 実際のAI変換デモ映像です</p>
   </div>
 </section>
 
@@ -716,6 +741,28 @@
 </a>
 
 <script>
+  // 音声ON/OFFトグル
+  function toggleSound() {
+    const video = document.getElementById('ba-video');
+    const btn   = document.getElementById('sound-btn');
+    if (video.muted) {
+      video.muted = false;
+      video.play().catch(() => { video.muted = true; });
+      btn.textContent = '🔊 音声ON中';
+      btn.classList.add('on');
+    } else {
+      video.muted = true;
+      btn.textContent = '🔇 タップで音声ON';
+      btn.classList.remove('on');
+    }
+  }
+
+  // ページ復帰時に動画再開（iOS対策）
+  document.addEventListener('visibilitychange', () => {
+    const video = document.getElementById('ba-video');
+    if (video && document.visibilityState === 'visible') video.play().catch(() => {});
+  });
+
   // フェードイン
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => {
