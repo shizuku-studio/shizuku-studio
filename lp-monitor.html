@@ -75,14 +75,14 @@
     .btn-line {
       display: block;
       width: 100%;
-      max-width: 320px;
+      max-width: 380px;
       margin: 0 auto;
       background: var(--green);
       color: #fff;
-      font-size: 1rem;
+      font-size: 2.2rem;
       font-weight: 700;
       text-align: center;
-      padding: 18px 20px;
+      padding: 22px 20px;
       border-radius: 50px;
       text-decoration: none;
       letter-spacing: 0.05em;
@@ -92,10 +92,10 @@
     .btn-line:active { transform: scale(0.97); }
     .btn-line small {
       display: block;
-      font-size: 0.7rem;
+      font-size: 0.85rem;
       font-weight: 400;
       opacity: 0.85;
-      margin-top: 3px;
+      margin-top: 4px;
     }
 
     /* ─── HEADER ─── */
@@ -128,21 +128,21 @@
       display: inline-block;
       background: #C03030;
       color: #fff;
-      font-size: 0.75rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
-      padding: 5px 18px;
-      border-radius: 20px;
-      margin-bottom: 18px;
+      letter-spacing: 0.08em;
+      padding: 10px 28px;
+      border-radius: 30px;
+      margin-bottom: 16px;
     }
     .hero-eyebrow {
       display: inline-block;
       background: var(--purple);
       color: #fff;
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      padding: 5px 16px;
-      border-radius: 20px;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      padding: 10px 26px;
+      border-radius: 30px;
       margin-bottom: 18px;
     }
     .hero-title {
@@ -376,27 +376,33 @@
       text-align: center;
       padding: 64px 20px;
     }
-    .cta-section .section-title { color: #fff; }
+    .cta-section .section-title {
+      color: #fff;
+      font-size: clamp(1.6rem, 7vw, 2.4rem);
+    }
     .cta-section .section-sub {
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.85);
       margin-bottom: 12px;
+      font-size: 1.05rem;
+      line-height: 1.9;
     }
     .cta-limit-badge {
       display: inline-block;
       background: rgba(192,48,48,0.8);
       border: 1px solid rgba(255,120,120,0.5);
       color: #fff;
-      font-size: 0.78rem;
+      font-size: 1.1rem;
+      font-weight: 700;
       letter-spacing: 0.1em;
-      padding: 5px 18px;
-      border-radius: 20px;
+      padding: 10px 28px;
+      border-radius: 30px;
       margin-bottom: 28px;
     }
     .cta-note {
       margin-top: 18px;
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.8;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 2;
     }
 
     /* ─── FOOTER ─── */
@@ -619,7 +625,7 @@
       <div class="flow-step">
         <div class="step-num">1</div>
         <div class="step-body">
-          <h3>LINEで「モニター応募」と送る</h3>
+          <h3>LINEで「<ruby>応募<rt>おうぼ</rt></ruby>」と送る</h3>
           <p>ひとこと送るだけでOKです。24時間以内にご返信します。</p>
           <span class="step-tag">🔒 秘密厳守</span>
         </div>
